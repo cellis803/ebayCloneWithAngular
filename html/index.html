@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="ebayApp">
+<html>
     <head>
         <meta charset="utf-8">
         <title>eBay clone with Angular</title>
@@ -11,125 +11,23 @@
         <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script>
         <script>
-
-            var ebayApp = angular.module('ebayApp', []);
-            ebayApp.controller('EbayCtrl', function($scope, $http) {
-
-                $scope.auctionList = [];
-
-
-                $scope.getAuctionList = function() {
-                    $http.get("/auctions", function(data) {                  
-                        $scope.auctionList = data;
-                    });                    
-                };
-            });
-
-            $(document).ready(function() {
-                var bidDialog = $("#bidDialog").dialog({
-                    
-                        autoOpen: false,
-                        height: 300,
-                        width: 400,
-                        modal: true,
-                        open: function(event, ui) {
-                            $(".ui-dialog-titlebar-close", ui.dialog | ui).hide();
-                            $("#bidAmount").val("");
-                        }
-                                
-                    });
-
-                var newAuctionDialog = $("#newAuctionDialog").dialog({
-                    
-                        autoOpen: false,
-                        height: 300,
-                        width: 450,
-                        modal: true,
-                        open: function(event, ui) {
-                            $(".ui-dialog-titlebar-close", ui.dialog | ui).hide();
-                            //$("#bidAmount").val("");
-                        }         
-                    });            
-            });
-
+            //angular scripts go here
         </script>  
 
     </head>
-    <body ng-controller="EbayCtrl">
+    <body>
         <div id="header">
             header
         </div>
 
-        <div id="main" data-ng-init="getAuctionList()">
-
-            <div ng-repeat="auction in auctionList" className="yui3-g auction">
-                <div className="yui3-u-1">
-                    <div className="yui3-g">
-                        <div className="yui3-u-1-2">
-                            <a href="#">{{auction.title}}</a>&nbsp; 
-                            [bids: {{auction.numberOfBids}}] <br/>
-                            {{auction.description} 
-                            
-                        </div>
-                        <div className="yui3-u-1-6">
-                            <span className="sellerName">{{auction.sellerName}}</span>
-                        </div>
-                        <div className="yui3-u-1-4">
-                            {{auction.displayCurrentPrice}}
-                            Time Remaining: {{auction.timeRemaining}}
-                        </div>                        
-                    </div>
-                </div>
-                <br/> 
-            </div>
-
-
+        <div id="main">
+            main
         </div>
 
         <div id="footer">
             footer
         </div>
 
-        <div id="bidDialog">
-            <div class="yui3-g">
-                <div class="yui3-u-1">
-                    <p>Current Bid: $<span id="currentBidValue"></span></p>
-                    <p>Place your bid.</p>
-                    
-                    <form>
-                        <label for="bidAmount">Bid Amount: </label>
-                        <input type="text" name="bidAmount" id="bidAmount" value="" class="text ui-widget-content ui-corner-all">
-                        <p id="bidErrorMessage" style="display:none" class="error">Please enter a bid higher than the current bid</p>
-                    </form>
-                </div>
-            </div>
-        </div>
 
-        <div id="newAuctionDialog">
-            <div class="yui3-g">
-                <div class="yui3-u-1">
-                    <p>Sell something.</p>                
-                    <form>
-                        <label for="title">Title: </label>
-                        <input type="text" name="title" id="title" value="" class="text ui-widget-content ui-corner-all">
-                        <br/>
-                        <label for="description">Description: </label>
-                        <input type="text" name="description" id="description" value="" class="text ui-widget-content ui-corner-all">
-                        <br/>
-                        <label for="startingBid">Starting Bid: </label>
-                        <input type="text" name="startingBid" id="startingBid" value="" class="text ui-widget-content ui-corner-all">
-                        <br/>
-                        <label for="duration">Duration: </label>
-                        <select name="duration" id="duration" class="text ui-widget-content ui-corner-all">
-                            <option value="1">1 Day</option>
-                            <option value="3">3 Days</option>
-                            <option value="5">5 Days</option>
-                            <option value="7">7 Days</option>
-                        </select>
-                        <br/>                                                           
-                    </form>
-                </div>
-            </div>
-        </div>
     </body>  
 </html>
