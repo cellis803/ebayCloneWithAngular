@@ -14,9 +14,15 @@
 
             var ebayApp = angular.module('ebayApp', []);
             ebayApp.controller('EbayCtrl', function($scope, $http) {
-                //put scoped vars here
 
-                //put scoped functions here
+                $scope.auctionList = [];
+
+
+                $scope.getAuctionList = function() {
+                    $http.get("/auctions", function(data) {                  
+                        $scope.auctionList = data;
+                    });                    
+                };
             });
 
             $(document).ready(function() {
@@ -54,8 +60,30 @@
             header
         </div>
 
-        <div id="main">
-            main
+        <div id="main" data-ng-init="getAuctionList()">
+
+            <div ng-repeat="auction in auctionList" className="yui3-g auction">
+                <div className="yui3-u-1">
+                    <div className="yui3-g">
+                        <div className="yui3-u-1-2">
+                            <a href="#">{{auction.title}}</a>&nbsp; 
+                            [bids: {{auction.numberOfBids}}] <br/>
+                            {{auction.description} 
+                            
+                        </div>
+                        <div className="yui3-u-1-6">
+                            <span className="sellerName">{{auction.sellerName}}</span>
+                        </div>
+                        <div className="yui3-u-1-4">
+                            {{auction.displayCurrentPrice}}
+                            Time Remaining: {{auction.timeRemaining}}
+                        </div>                        
+                    </div>
+                </div>
+                <br/> 
+            </div>
+
+
         </div>
 
         <div id="footer">
