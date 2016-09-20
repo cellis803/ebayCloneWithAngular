@@ -1,16 +1,67 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="ebayApp">
     <head>
         <meta charset="utf-8">
-        <title>eBay clone</title>
+        <title>eBay clone with Angular</title>
         <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.18.1/build/cssgrids/cssgrids-min.css">
         <link rel="stylesheet" type="text/css" href="ebayStyles.css"/>
         <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/redmond/jquery-ui.min.css"/>
-        
-    </head>
-    <body>
 
-        <div id="main"></div>
+        <script src="https://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script>
+        <script>
+
+            var ebayApp = angular.module('ebayApp', []);
+            ebayApp.controller('EbayCtrl', function($scope, $http) {
+                //put scoped vars here
+
+                //put scoped functions here
+            });
+
+            $(document).ready(function() {
+                var bidDialog = $("#bidDialog").dialog({
+                    
+                        autoOpen: false,
+                        height: 300,
+                        width: 400,
+                        modal: true,
+                        open: function(event, ui) {
+                            $(".ui-dialog-titlebar-close", ui.dialog | ui).hide();
+                            $("#bidAmount").val("");
+                        }
+                                
+                    });
+
+                var newAuctionDialog = $("#newAuctionDialog").dialog({
+                    
+                        autoOpen: false,
+                        height: 300,
+                        width: 450,
+                        modal: true,
+                        open: function(event, ui) {
+                            $(".ui-dialog-titlebar-close", ui.dialog | ui).hide();
+                            //$("#bidAmount").val("");
+                        }         
+                    });            
+            });
+
+        </script>  
+
+    </head>
+    <body ng-controller="EbayCtrl">
+        <div id="header">
+            header
+        </div>
+
+        <div id="main">
+            main
+        </div>
+
+        <div id="footer">
+            footer
+        </div>
+
         <div id="bidDialog">
             <div class="yui3-g">
                 <div class="yui3-u-1">
@@ -52,38 +103,5 @@
                 </div>
             </div>
         </div>
-    </body>
-    
-    <script src="https://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script>
-    <script>
-        $(document).ready(function() {
-            var bidDialog = $("#bidDialog").dialog({
-                
-                    autoOpen: false,
-                    height: 300,
-                    width: 400,
-                    modal: true,
-                    open: function(event, ui) {
-                        $(".ui-dialog-titlebar-close", ui.dialog | ui).hide();
-                        $("#bidAmount").val("");
-                    }
-                            
-                });
-
-            var newAuctionDialog = $("#newAuctionDialog").dialog({
-                
-                    autoOpen: false,
-                    height: 300,
-                    width: 450,
-                    modal: true,
-                    open: function(event, ui) {
-                        $(".ui-dialog-titlebar-close", ui.dialog | ui).hide();
-                        //$("#bidAmount").val("");
-                    }         
-                });            
-        });
-
-    </script>    
+    </body>  
 </html>
