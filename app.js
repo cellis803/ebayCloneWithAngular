@@ -9,6 +9,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use('/', express.static('html'));
+app.use('/js/', express.static('js'));
 
 app.post('/login', function(request, response) {
   
